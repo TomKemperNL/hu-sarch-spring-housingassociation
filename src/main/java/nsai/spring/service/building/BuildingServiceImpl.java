@@ -23,7 +23,7 @@ public class BuildingServiceImpl implements BuildingService {
 
     @Override
     public Optional<Building> getBuildingById(long id) {
-        return Optional.ofNullable(buildingRepository.findOne(id));
+        return buildingRepository.findById(id);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class BuildingServiceImpl implements BuildingService {
 
     @Override
     public Collection<Building> getAllBuildings() {
-        return buildingRepository.findAll(new Sort("name"));
+        return buildingRepository.findAll(Sort.by("name"));
     }
 
     @Override
@@ -43,6 +43,6 @@ public class BuildingServiceImpl implements BuildingService {
 
     @Override
     public void delete(Long id){
-        buildingRepository.delete(id);
+        buildingRepository.deleteById(id);
     }
 }

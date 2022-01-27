@@ -10,7 +10,6 @@ import nsai.spring.service.costs.CostsService;
 import nsai.spring.service.flat.FlatService;
 import nsai.spring.service.payment.PaymentService;
 import nsai.spring.service.user.UserService;
-import org.apache.commons.lang.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +30,6 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.*;
-
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.sym.error;
 
 @Controller
 public class UserController {

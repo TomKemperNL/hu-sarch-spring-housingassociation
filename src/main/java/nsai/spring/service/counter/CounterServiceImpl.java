@@ -23,7 +23,7 @@ public class CounterServiceImpl implements CounterService {
 
     @Override
     public Optional<Counter> getCounterById(long id) {
-        return Optional.ofNullable(counterRepository.findOne(id));
+        return counterRepository.findById(id);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class CounterServiceImpl implements CounterService {
 
     @Override
     public Collection<Counter> getAllCounters() {
-        return counterRepository.findAll(new Sort("id"));
+        return counterRepository.findAll(Sort.by("id"));
     }
 
     @Override
@@ -43,6 +43,6 @@ public class CounterServiceImpl implements CounterService {
 
     @Override
     public void delete(Long id){
-        counterRepository.delete(id);
+        counterRepository.deleteById(id);
     }
 }

@@ -27,7 +27,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public Optional<Payment> getPaymentById(long id) {
         LOGGER.debug("Getting user={}", id);
-        return Optional.ofNullable(paymentRepository.findOne(id));
+        return paymentRepository.findById(id);
     }
 
 
@@ -51,7 +51,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     public void delete(Long id){
-        paymentRepository.delete(id);
+        paymentRepository.deleteById(id);
     }
 
     public void update(Payment payment){

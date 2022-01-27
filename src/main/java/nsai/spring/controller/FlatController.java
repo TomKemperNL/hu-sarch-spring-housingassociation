@@ -49,14 +49,11 @@ public class FlatController {
         model.addObject("flat", new Flat());
         model.addObject("is",false);
 
-        if(id != null){
-            Flat flat = flatRepository.findOne(id);
-            if(flat != null){
-                model.addObject("flat",flat);
-                model.addObject("is",true);
-            }
-        }
-
+		flatRepository.findById(id)
+					  .ifPresent(flat -> {
+						  model.addObject("flat", flat);
+						  model.addObject("is", true);
+					  });
 
         model.addObject("buildings",buildingRepository.findAll());
 
@@ -87,12 +84,14 @@ public class FlatController {
 
     @RequestMapping(value = "/flat/view/{id}")
     public ModelAndView showFlat(ModelAndView model, @PathVariable Long id){
-        Flat flat = flatRepository.findOne(id);
-        List<Counter> counter = flat.getCounterList();
+		flatRepository.findById(id)
+					  .ifPresent(flat -> {
+						  List<Counter> counter = flat.getCounterList();
 
-        model.setViewName("flat_view");
-        model.addObject("flat",flat);
-        model.addObject("counter",counter);
+						  model.setViewName("flat_view");
+						  model.addObject("flat", flat);
+						  model.addObject("counter", counter);
+					  });
 
         return model;
     }
