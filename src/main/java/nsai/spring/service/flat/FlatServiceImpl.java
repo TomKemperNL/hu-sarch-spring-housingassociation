@@ -23,7 +23,7 @@ public class FlatServiceImpl implements FlatService {
 
     @Override
     public Optional<Flat> getFlatById(long id) {
-        return Optional.ofNullable(flatRepository.findOne(id));
+        return flatRepository.findById(id);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class FlatServiceImpl implements FlatService {
 
     @Override
     public Collection<Flat> getAllFlats() {
-        return flatRepository.findAll(new Sort("number"));
+        return flatRepository.findAll(Sort.by("number"));
     }
 
     @Override
@@ -43,6 +43,6 @@ public class FlatServiceImpl implements FlatService {
 
     @Override
     public void delete(Long id){
-        flatRepository.delete(id);
+        flatRepository.deleteById(id);
     }
 }

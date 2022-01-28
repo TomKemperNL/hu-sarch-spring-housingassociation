@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> getUserById(long id) {
         LOGGER.debug("Getting user={}", id);
-        return Optional.ofNullable(userRepository.findOne(id));
+        return userRepository.findById(id);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Collection<User> getAllUsers() {
         LOGGER.debug("Getting all users");
-        return userRepository.findAll(new Sort("email"));
+        return userRepository.findAll(Sort.by("email"));
     }
 
     @Override
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public void delete(Long id){
-        userRepository.delete(id);
+        userRepository.deleteById(id);
     }
 
     public void update(User user){

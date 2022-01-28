@@ -25,7 +25,7 @@ public class CostsServiceImpl implements CostsService {
 
     @Override
     public Optional<Costs> getCostsById(long id) {
-        return Optional.ofNullable(costsRepository.findOne(id));
+        return costsRepository.findById(id);
     }
 
 
@@ -55,6 +55,6 @@ public class CostsServiceImpl implements CostsService {
 
     @Override
     public void delete(Long id){
-        costsRepository.delete(id);
+        costsRepository.deleteById(id);
     }
 }
